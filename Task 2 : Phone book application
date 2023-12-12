@@ -1,0 +1,71 @@
+class PhoneBook:
+    def __init__(self):
+        self.contacts = {}
+
+    def add_contact(self, name, number):
+        self.contacts[name] = number
+        print(f"Contact '{name}' added successfully.")
+
+    def edit_contact(self, name, new_number):
+        if name in self.contacts:
+            self.contacts[name] = new_number
+            print(f"Contact '{name}' updated successfully.")
+        else:
+            print(f"Contact '{name}' not found.")
+
+    def delete_contact(self, name):
+        if name in self.contacts:
+            del self.contacts[name]
+            print(f"Contact '{name}' deleted successfully.")
+        else:
+            print(f"Contact '{name}' not found.")
+
+    def view_contacts(self):
+        if not self.contacts:
+            print("No contacts available.")
+        else:
+            print("Contacts:")
+            for name, number in self.contacts.items():
+                print(f"{name}: {number}")
+
+
+def main():
+    phone_book = PhoneBook()
+
+    while True:
+        print("\nPhone Book Menu:")
+        print("1. Add Contact")
+        print("2. Edit Contact")
+        print("3. Delete Contact")
+        print("4. View Contacts")
+        print("5. Exit")
+
+        choice = input("Enter your choice (1-5): ")
+
+        if choice == "1":
+            name = input("Enter contact name: ")
+            number = input("Enter contact number: ")
+            phone_book.add_contact(name, number)
+
+        elif choice == "2":
+            name = input("Enter contact name to edit: ")
+            new_number = input("Enter new contact number: ")
+            phone_book.edit_contact(name, new_number)
+
+        elif choice == "3":
+            name = input("Enter contact name to delete: ")
+            phone_book.delete_contact(name)
+
+        elif choice == "4":
+            phone_book.view_contacts()
+
+        elif choice == "5":
+            print("Exiting Phone Book. Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
+
+
+if __name__ == "__main__":
+    main()
